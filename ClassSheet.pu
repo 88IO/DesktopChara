@@ -1,0 +1,82 @@
+@startuml
+
+title <DesktopChara>
+
+object DesktopChara{
+    WinMain()
+}
+
+object Config {
+    setup()
+}
+
+package Input {
+    enum MouseCondition {
+        Click_L
+        Click_R
+        NoClick
+    }
+
+    class Input {
+        Key[256]
+        MouseCondition mc
+        int UpdateKey()
+        void mouseClick()
+    }
+
+    MouseCondition .le- Input
+}
+
+
+
+package Screen {
+    class POINT <<struct>>{
+        int x
+        int y
+    }
+
+    class Screen {
+        -bool StartFlag_L
+        -POINT StartCursorPos
+        -POINT NowCursorPos
+        -POINT StartWindowPos
+        -void MoveWindow()
+        -void ContextMenu()
+        +void Update()
+    }
+
+    POINT .le- Screen
+}
+
+package Character {
+    enum Actions {
+        None
+        Blink
+        Surprised
+        Callout
+    }
+
+    class Character {
+        -Actions ActType
+        -int graphHandle[12] callout
+        -int Counter
+        -int sdNum
+        -bool AnimeFlag isCallout
+
+        -GetAction()
+        +void Update()
+        +void Draw()
+    }
+
+    Actions .le- Character
+}
+
+Input -> Screen :mouseClick()
+Input -> Character :Key[256]
+
+Character -> DesktopChara :chara
+Screen -> DesktopChara :sc
+Config -ri> DesktopChara
+Input -> DesktopChara :Key[256]
+
+@endtuml

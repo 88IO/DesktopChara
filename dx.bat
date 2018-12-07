@@ -1,0 +1,25 @@
+g++.exe %* ^
+    -IC:/msys64/mingw64/site-packages/DxLib/dxlib ^
+    -LC:/msys64/mingw64/site-packages/DxLib/dxlib ^
+    --exec-charset=cp932 ^
+    -DDX_GCC_COMPILE ^
+    -DDX_NON_INLINE_ASM ^
+    -lDxLib ^
+    -lDxUseCLib ^
+    -lDxDrawFunc ^
+    -ljpeg ^
+    -lpng ^
+    -lzlib ^
+    -ltiff ^
+    -ltheora_static ^
+    -lvorbis_static ^
+    -lvorbisfile_static ^
+    -logg_static ^
+    -lbulletdynamics ^
+    -lbulletcollision ^
+    -lbulletmath ^
+    -lopusfile ^
+    -lopus ^
+    -lsilk_common ^
+    -lcelt ^
+    -mwindows
