@@ -1,12 +1,6 @@
 #ifndef INCLUDE_CHARACTER_H
 #define INCLUDE_CHARACTER_H
 
-enum Actions {
-    None,
-    Blink,
-    Surprised,
-    Callout,
-};
 
 class Character {
 private:
@@ -17,6 +11,7 @@ private:
     int AnimeLoop;
 
     bool isCallout;
+    enum Actions { None, Blink, Surprised, Callout };
     Actions ActType;
 
     void GetAction();

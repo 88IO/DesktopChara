@@ -1,7 +1,6 @@
 #include "Character.h"
-#include "Input.h"
-#include <windows.h>
 #include "DxLib.h"
+#include <windows.h>
 #include <iostream>
 
 Character::Character() {
@@ -21,14 +20,18 @@ Character::~Character() {
 };
 
 void Character::GetAction() {
+    static int tmpSpaceKey[2] = {0, 0};
+    tmpSpaceKey[0] = tmpSpaceKey[1];
+    tmpSpaceKey[1] = DxLib::CheckHitKey(KEY_INPUT_SPACE);
+
     Counter++;
     if (ActType != None)  return;
 
     if (Counter % 600 == 0) {
         ActType = Blink;
-    } else if (Key[KEY_INPUT_DELETE] == 1) {
+    } else if (DxLib::CheckHitKey(KEY_INPUT_DELETE) == 1) {
         ActType = Surprised;
-    } else if (Key[KEY_INPUT_SPACE] == 1) {
+    } else if (tmpSpaceKey[0] < tmpSpaceKey[1]) {
         ActType = Callout;
     }
 }
@@ -72,7 +75,7 @@ void Character::Update() {
 void Character::Draw() {
     if (isCallout == TRUE) {
         DxLib::DrawGraph(0, 0, callout, TRUE);
-        DrawFormatString(40, 50, DxLib::GetColor(0, 0, 0), "TEST!");
+        DrawFormatString(40, 50, DxLib::GetColor(0, 0, 0), "テスト!");
     }
     DxLib::DrawGraph(300, 0, graphHandle[sdNum], TRUE);
 }

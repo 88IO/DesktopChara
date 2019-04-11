@@ -1,10 +1,21 @@
 #include "Screen.h"
-#include "Input.h"
-#include <windows.h>
 #include "DxLib.h"
+#include <windows.h>
 
 Screen::Screen() {
     StartFlag_L = FALSE;
+    mc = None;
+}
+
+int Screen::MouseClick() {
+    if (DxLib::GetMouseInput() & MOUSE_INPUT_LEFT) {
+        mc = Click_L;
+    } else if (DxLib::GetMouseInput() & MOUSE_INPUT_RIGHT) {
+        mc = Click_R;
+    } else {
+        mc = None;
+    }
+    return mc;
 }
 
 void Screen::MoveWindow() {
@@ -27,7 +38,7 @@ void Screen::ContextMenu() {
 }
 
 void Screen::Update() {
-    switch (mouseClick()) {
+    switch (MouseClick()) {
     case MouseCondition::Click_L:
         MoveWindow();
         break;

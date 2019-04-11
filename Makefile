@@ -2,14 +2,14 @@
 
 # set File
 program = DesktopChara
-objs = DesktopChara.o Config.o Screen.o Character.o Input.o
+objs = DesktopChara.o Config.o Screen.o Character.o
 
 # set option
 CC = g++
 RM = del
 CFLAGS = -g -Wall -s --exec-charset=cp932
-DXFLAGS = -IC:/msys64/mingw64/site-packages/DxLib/dxlib \
-			-LC:/msys64/mingw64/site-packages/DxLib/dxlib \
+DXFLAGS = -IC:/msys64/mingw64/site-packages/dxlib \
+			-LC:/msys64/mingw64/site-packages/dxlib \
 			-DDX_GCC_COMPILE \
 			-DDX_NON_INLINE_ASM \
 			-lDxLib \
@@ -57,4 +57,3 @@ clean:
 Config.o: Config.h
 Screen.o: Screen.h
 Character.o: Character.h
-Input.o: Input.h

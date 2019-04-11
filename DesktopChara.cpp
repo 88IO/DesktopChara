@@ -1,9 +1,8 @@
 #include "Character.h"
 #include "Screen.h"
 #include "Config.h"
-#include "Input.h"
-#include <windows.h>
 #include "DxLib.h"
+#include <windows.h>
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -12,7 +11,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     Screen sc;
 
     while (DxLib::ScreenFlip() == 0 && DxLib::ProcessMessage() == 0 &&
-            DxLib::ClearDrawScreen() == 0 && UpdateKey() == 0 && Key[KEY_INPUT_ESCAPE] == 0) {
+            DxLib::ClearDrawScreen() == 0 && DxLib::CheckHitKey(KEY_INPUT_ESCAPE) == 0) {
         chara.Update();
         chara.Draw();
         sc.Update();

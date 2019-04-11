@@ -1,4 +1,5 @@
 @startuml
+scale 1.5
 
 title <DesktopChara>
 
@@ -10,29 +11,11 @@ object Config {
     setup()
 }
 
-package Input {
+package Screen {
     enum MouseCondition {
+        None
         Click_L
         Click_R
-        NoClick
-    }
-
-    class Input {
-        Key[256]
-        MouseCondition mc
-        int UpdateKey()
-        void mouseClick()
-    }
-
-    MouseCondition .le- Input
-}
-
-
-
-package Screen {
-    class POINT <<struct>>{
-        int x
-        int y
     }
 
     class Screen {
@@ -40,11 +23,13 @@ package Screen {
         -POINT StartCursorPos
         -POINT NowCursorPos
         -POINT StartWindowPos
+        -MouseCondition mc
         -void MoveWindow()
+        -void MouseClick()
         -void ContextMenu()
         +void Update()
     }
-
+    MouseCondition .ri- Screen
     POINT .le- Screen
 }
 
@@ -71,12 +56,8 @@ package Character {
     Actions .le- Character
 }
 
-Input -> Screen :mouseClick()
-Input -> Character :Key[256]
-
 Character -> DesktopChara :chara
 Screen -> DesktopChara :sc
 Config -ri> DesktopChara
-Input -> DesktopChara :Key[256]
 
 @endtuml
