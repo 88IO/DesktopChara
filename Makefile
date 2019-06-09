@@ -7,9 +7,9 @@ objs = DesktopChara.o Config.o Screen.o Character.o
 # set option
 CC = g++
 RM = del
-CFLAGS = -g -Wall -s --exec-charset=cp932
-DXFLAGS = -IC:/msys64/mingw64/site-packages/dxlib \
-			-LC:/msys64/mingw64/site-packages/dxlib \
+CFLAGS = -g -Wall -s
+DXFLAGS = -IC:/msys64/mingw64/extra-packages/dxlib \
+			-LC:/msys64/mingw64/extra-packages/dxlib \
 			-DDX_GCC_COMPILE \
 			-DDX_NON_INLINE_ASM \
 			-lDxLib \

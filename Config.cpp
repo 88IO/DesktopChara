@@ -9,6 +9,7 @@ int setup() {
     DxLib::SetUseBackBufferTransColorFlag(TRUE);
     DxLib::SetDrawScreen(DX_SCREEN_BACK);
     DxLib::SetAlwaysRunFlag(TRUE);
+    DxLib::SetOutApplicationLogValidFlag(FALSE);
     DxLib::SetFontSize(80);
     DxLib::SetFontThickness(10);
     DxLib::ChangeFont("メイリオ");
